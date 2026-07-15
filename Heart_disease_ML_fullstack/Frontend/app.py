@@ -1,0 +1,13 @@
+import streamlit as st
+st.title("Heart Disease Prediction")
+st.text("Enter the following details to predict the likelihood of heart disease:")
+Age = st.number_input("Enter your age :", min_value=10, max_value=100, value=30)
+sex = st.selectbox("Select your sex:", ["Male", "Female"])
+chestpain_type = st.radio("Select your chest pain type:", ["Typical angina", "Atypical angina", "Non-anginal pain", "Asymptomatic"])
+Testbps = st.slider("Enter your resting blood pressure (in mm Hg):", min_value=80, max_value=200, value=120)
+cholesterol = st.slider("Enter your serum cholesterol (in mg/dl):", min_value=100, max_value=600, value=200)
+FastingBS = st.radio("Do you have fasting blood sugar > 120 mg/dl?", ["Yes", "No"])
+Restecg = st.radio("Select your resting electrocardiographic results:", ["Normal", "ST-T wave abnormality", "Left ventricular hypertrophy"])
+Thalach = st.number_input("Enter your maximum heart rate achieved:", min_value=60, max_value=220, value=150)
+Exang = st.radio("Do you have exercise-induced angina?", ["Yes", "No"])
+Oldpeak = st.slider("Enter your ST depression induced by exercise relative to rest:", min_value=0.0, max_value=6.2, value=1.0)
