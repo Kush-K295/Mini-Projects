@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 import requests
 import base64
@@ -116,11 +118,18 @@ if (button):
         "thal": thal_dict[thal]
     }
 
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    audio_path = os.path.join(current_dir, "RDR2 Low honor sound effect.mp3")
+    audio_path2 = os.path.join(current_dir, "RDR2 High Honor sound effect.mp3")
+
+
     response = requests.post("https://heart-disease-prediction-g7q5.onrender.com/predict", json=payload)
     result = response.json()
     if(result["prediction"] == 0):
         st.error("The model predicts that you are likely to have heart disease. Please consult a doctor.")
-        play_silent_audio("RDR2 Low honor sound effect.mp3")
+        play_silent_audio(audio_path)
     else:
         st.success("The model predicts that you are unlikely to have heart disease. Keep maintaining a healthy lifestyle!")
-        play_silent_audio("RDR2 High Honor sound effect.mp3")
+        play_silent_audio(audio_path2)
