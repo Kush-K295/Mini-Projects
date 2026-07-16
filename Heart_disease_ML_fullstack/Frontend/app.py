@@ -123,7 +123,23 @@ if (button):
 
     audio_path = os.path.join(current_dir, "RDR2 Low honor sound effect.mp3")
     audio_path2 = os.path.join(current_dir, "RDR2 High Honor sound effect.mp3")
-
+    
+    components.html(
+    """
+    <script>
+    // Search the parent window (the Streamlit Cloud overlay)
+    const elements = window.parent.document.querySelectorAll('a, div');
+    elements.forEach(e => {
+        // Find the specific element containing the text and hide it
+        if (e.innerText && e.innerText.includes("Hosted with Streamlit")) {
+            e.style.display = 'none';
+        }
+    });
+    </script>
+    """,
+    height=0,
+    width=0
+)
 
     response = requests.post("https://heart-disease-prediction-g7q5.onrender.com/predict", json=payload)
     result = response.json()
