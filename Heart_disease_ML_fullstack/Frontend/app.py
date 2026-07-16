@@ -116,7 +116,7 @@ if (button):
         "thal": thal_dict[thal]
     }
 
-    response = requests.post("http://127.0.0.1:8000/predict", json=payload)
+    response = requests.post("https://heart-disease-prediction-g7q5.onrender.com/predict", json=payload)
     result = response.json()
     if(result["prediction"] == 0):
         st.error("The model predicts that you are likely to have heart disease. Please consult a doctor.")
