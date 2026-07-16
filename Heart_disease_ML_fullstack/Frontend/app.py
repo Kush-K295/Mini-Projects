@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 st.logo(
-    "logo/heart.png",
+    "Heart_disease_ML_fullstack/Frontend/logo/heart.png",
     link="https://github.com/Kush-K295" 
 )
 
