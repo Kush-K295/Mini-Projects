@@ -25,10 +25,10 @@ The core of this project is a Machine Learning model trained to analyze medical 
                                      └───────────┬────────────┘
                                                  │ HTTP POST
                                                  ▼
-┌───────────────────────┐  HTTP POST ┌────────────────────────┐
-│  Streamlit Prototyp   ├───────────►│    FastAPI Backend     │◄─── ML Model File
-│ Frontend 1 (Streamlit)│            │     (REST API)         │     (e.g.,svm.pkl / scalar.pkl)
-└───────────────────────┘            └────────────────────────┘
+    ┌───────────────────────┐  HTTP POST ┌────────────────────────┐
+    │  Streamlit Prototyp   ├───────────►│    FastAPI Backend     │◄─── ML Model File
+    │ Frontend 1 (Streamlit)│            │     (REST API)         │     (e.g.,svm.pkl / scalar.pkl)
+    └───────────────────────┘            └────────────────────────┘
 
 ## How it Works
 1. The user inputs their clinical data through either of the deployed frontends.
