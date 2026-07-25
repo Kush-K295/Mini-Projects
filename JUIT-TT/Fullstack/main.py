@@ -4,7 +4,7 @@ from typing import Optional
 import json
 import os
 import parser
-from fastapi.staticfiles import StaticFiles
+#from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 
@@ -109,4 +109,4 @@ def get_time_table(sem: int, batch: str):
             detail="No data found for the given semester and batch.",
         )
     return finalData
-app.mount("/", StaticFiles(directory="public", html=True), name="static")
+#app.mount("/", StaticFiles(directory="public", html=True), name="static")
