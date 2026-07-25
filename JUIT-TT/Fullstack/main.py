@@ -2,14 +2,18 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, field_validator
 from typing import Optional
 import json
-import os
 import tt_parser
-#from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
+from fastapi.responses import FileResponse
 
 app = FastAPI()
-DATA_DIR = Path(__file__).resolve().parent / "Data"
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "Data"
+
+@app.get("/", include_in_schema=False)
+async def root():
+    return FileResponse(BASE_DIR / "public" / "index.html")
 
 app.add_middleware(
     CORSMiddleware,
@@ -109,4 +113,3 @@ def get_time_table(sem: int, batch: str):
             detail="No data found for the given semester and batch.",
         )
     return finalData
-#app.mount("/", StaticFiles(directory="public", html=True), name="static")
