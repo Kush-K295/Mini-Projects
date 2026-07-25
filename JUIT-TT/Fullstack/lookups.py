@@ -1,10 +1,13 @@
 import json
 import os
+from pathlib import Path
 
-with open(os.path.join('Data', 'faculty_codes.json'), encoding='utf-8') as f:
+DATA_DIR = Path(__file__).resolve().parent / "Data"
+
+with open(DATA_DIR / "faculty_codes.json", encoding="utf-8") as f:
     faculty_codes = json.load(f)
 
-with open(os.path.join('Data', 'course_codes.json'), encoding='utf-8') as f:
+with open(DATA_DIR / "course_codes.json", encoding="utf-8") as f:
     course_codes = json.load(f)
 
 

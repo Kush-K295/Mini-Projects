@@ -6,9 +6,10 @@ import os
 import parser
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-app = FastAPI()
-DATA_DIR = "Data"
+from pathlib import Path
 
+app = FastAPI()
+DATA_DIR = Path(__file__).resolve().parent / "Data"
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,16 +18,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-with open(os.path.join(DATA_DIR, "sem1.json"), encoding="utf-8") as f:
+with open(DATA_DIR / "sem1.json", encoding="utf-8") as f:
     sem1 = json.load(f)
 
-with open(os.path.join(DATA_DIR, "sem3.json"), encoding="utf-8") as f:
+with open(DATA_DIR / "sem3.json", encoding="utf-8") as f:
     sem3 = json.load(f)
 
-with open(os.path.join(DATA_DIR, "sem5.json"), encoding="utf-8") as f:
+with open(DATA_DIR / "sem5.json", encoding="utf-8") as f:
     sem5 = json.load(f)
 
-with open(os.path.join(DATA_DIR, "sem7.json"), encoding="utf-8") as f:
+with open(DATA_DIR / "sem7.json", encoding="utf-8") as f:
     sem7 = json.load(f)
 
 semdata = {
