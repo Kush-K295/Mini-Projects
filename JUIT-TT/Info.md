@@ -3,7 +3,7 @@ A FastAPI backend that serves the odd-semester (1 / 3 / 5 / 7) timetable for JUI
 
 ## Live Deployment
 
-* **Link:** 
+* **Link:** https://juit-tt-2026.vercel.app
 * **Description:** The frontend is served directly by the FastAPI app via static file mounting, so there's a single deployment rather than a separate frontend/backend hosting setup.
 
 ## About the Project
