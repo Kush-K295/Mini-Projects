@@ -5,7 +5,7 @@ import json
 import tt_parser
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
-from fastapi.responses import FileResponse
+from fastapi.responses import RedirectResponse 
 
 app = FastAPI()
 BASE_DIR = Path(__file__).resolve().parent
@@ -13,7 +13,7 @@ DATA_DIR = BASE_DIR / "Data"
 
 @app.get("/", include_in_schema=False)
 async def root():
-    return FileResponse(BASE_DIR / "public" / "index.html")
+    return RedirectResponse("/index.html") 
 
 app.add_middleware(
     CORSMiddleware,
