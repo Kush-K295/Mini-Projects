@@ -108,4 +108,4 @@ def get_time_table(sem: int, batch: str):
             detail="No data found for the given semester and batch.",
         )
     return finalData
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+app.mount("/", StaticFiles(directory="public", html=True), name="static")
