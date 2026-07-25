@@ -3,7 +3,7 @@ from pydantic import BaseModel, field_validator
 from typing import Optional
 import json
 import os
-import parser
+import tt_parser
 #from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
@@ -97,7 +97,7 @@ def get_time_table(sem: int, batch: str):
         time_indx = slot["time"]
 
         for rawstr in slot["data"]:
-            parsedData = parser.parseit(rawstr, batch)
+            parsedData = tt_parser.parseit(rawstr, batch)
             if parsedData is not None:
                 parsedData["day"] = days[day_indx]
                 parsedData["time"] = time[time_indx]
