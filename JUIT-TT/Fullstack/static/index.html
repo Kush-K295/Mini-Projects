@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUIT Timetable</title>
+<link rel="icon" type="image/png" href="assets/icons/favicon-rabbit.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow:wght@400;500;600&family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- pre-processed: blurred, darkened, plum-tinted, seamless fade loop, muted -->
+<video id="bgVideo" autoplay muted loop playsinline>
+  <source src="assets/videos/bg-loop.mp4" type="video/mp4">
+</video>
+<div class="bg-overlay"></div>
+<canvas id="particles"></canvas>
+<div class="blueprint-lines"></div>
+
+<video id="transitionVideo" class="hidden" playsinline>
+  <source src="assets/videos/teleport.webm" type="video/webm">
+</video>
+
+<div id="app">
+
+  <!-- ============ SELECT SCREEN ============ -->
+  <section id="selectScreen" class="screen">
+    <div class="logo-wrap">
+      <a class="logo-slot" id="logoLink" href="https://github.com/Kush-K295" target="_blank" rel="noopener" title="Kush on GitHub" aria-label="Kush on GitHub"></a>
+    </div>
+    <p class="eyebrow">Odd Semester</p>
+    <h1 class="title">Juit <span class="accent">Timetable</span></h1>
+    <p class="tagline">"Wee are sooo late."</p>
+
+    <div class="step">
+      <div class="step-label">Select Semester</div>
+      <div class="ult-row" id="semRow">
+        <button class="ult-orb" data-sem="1"><span class="orb-shape"><span class="facet"></span><span class="num">1</span></span><span class="sub">SEM I</span></button>
+        <button class="ult-orb" data-sem="3"><span class="orb-shape"><span class="facet"></span><span class="num">3</span></span><span class="sub">SEM III</span></button>
+        <button class="ult-orb" data-sem="5"><span class="orb-shape"><span class="facet"></span><span class="num">5</span></span><span class="sub">SEM V</span></button>
+        <button class="ult-orb" data-sem="7"><span class="orb-shape"><span class="facet"></span><span class="num">7</span></span><span class="sub">SEM VII</span></button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Enter Batch Code</div>
+      <div class="batch-plate">
+        <input id="batchInput" type="text" maxlength="12" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="batch-hint">format example — <b>24A110</b></div>
+      <div class="recent-wrap" id="recentWrap"></div>
+    </div>
+
+    <div class="vamos-wrap">
+      <a class="vamos-icon-link" id="vamosIconLink" href="javascript:void(0)" role="button" title="Rendezvous — lock in your timetable" aria-label="Lock in your timetable">
+        <span class="vamos-icon" aria-hidden="true"></span>
+      </a>
+      <button id="vamosBtn">Vamos !</button>
+    </div>
+
+    <div id="errorMsg" class="error-msg hidden"></div>
+  </section>
+
+  <!-- ============ TIMETABLE SCREEN ============ -->
+  <section id="ttScreen" class="screen hidden">
+    <div class="tt-header">
+      <div class="header-actions">
+        <button class="back-btn" id="backBtn">‹ back</button>
+      </div>
+      <div class="badge-group">
+        <div class="b1" id="badgeBatch">—</div>
+        <div class="b2" id="badgeSem">SEM —</div>
+      </div>
+      <div class="header-actions">
+        <a class="report-btn" id="reportLink" href="#" target="_blank" rel="noopener"><span class="report-icon" aria-hidden="true"></span>Report Unknown Faculty/Subject</a>
+        <div class="day-select-wrap">
+          <select id="daySelect">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="tt-grid" id="ttGrid"></div>
+  </section>
+
+  <footer class="watermark">
+    <button id="aboutBtn">Built by Kush · Backend served independently via FastAPI</button>
+  </footer>
+</div>
+
+<!-- Elective modal -->
+<div id="electiveModal" class="modal-overlay hidden">
+  <div class="modal-panel">
+    <button class="modal-close" data-close="electiveModal">✕</button>
+    <div class="modal-eyebrow">Elective Slot</div>
+    <div class="modal-title" id="electiveTime">—</div>
+    <div id="electiveList"></div>
+  </div>
+</div>
+
+<!-- About modal -->
+<div id="aboutModal" class="modal-overlay hidden">
+  <div class="modal-panel">
+    <button class="modal-close" data-close="aboutModal">✕</button>
+    <div class="modal-eyebrow">About</div>
+    <div class="modal-title">Juit Timetable</div>
+    <div class="about-row"><span class="k">Backend</span><span class="v">FastAPI + Pydantic</span></div>
+    <div class="about-row"><span class="k">Frontend</span><span class="v">HTML · CSS · JS</span></div>
+    <div class="about-row"><span class="k">Data</span><span class="v">Parsed institute timetable export</span></div>
+    <div class="about-row"><span class="k">Theme</span><span class="v">I used Chamber's theme from VALORANT</span></div>
+    <div class="about-links">
+      <a href="#" id="githubLink" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" id="linkedinLink" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
