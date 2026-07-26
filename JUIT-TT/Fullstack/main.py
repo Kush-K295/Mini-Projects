@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, field_validator
 from typing import Optional
 import json
+import re
 import tt_parser
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
@@ -83,7 +84,7 @@ class outgoing(BaseModel):
     faculty: Optional[str] = None
     room: str
 
-
+BATCH_PATTERN = re.compile(r'^\d{2}[A-Z]\d{2,3}$')
 @app.get("/getTT/{sem}/{batch}", response_model=list[outgoing])
 def get_time_table(sem: int, batch: str):
     if sem not in semdata:
@@ -93,6 +94,11 @@ def get_time_table(sem: int, batch: str):
         )
 
     batch = batch.upper()
+    if not BATCH_PATTERN.fullmatch(batch):
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid batch format.",
+        )
     data = semdata[sem]
     finalData = []
 

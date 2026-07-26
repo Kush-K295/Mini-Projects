@@ -74,6 +74,16 @@ def parseit(rawstr: str, user_batch: str):
     coursecode = coursecode.rstrip('/')
 
 
+    if 'ALL' in batches_str.upper():
+        return {
+            "type": lookups.get_class_type(class_type),
+            "subject": lookups.get_course_name(coursecode),
+            "batches": batches_str,
+            "elective": electiveInfo,
+            "faculty": lookups.get_faculty_name(faculty),
+            "room": room,
+        }
+
     batch_list = [
         b.strip().rstrip('.')
         for b in re.split(r'[,\s&]+', batches_str)
