@@ -18,7 +18,7 @@
   let w, h, particles = [];
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const COUNT = reduced ? 0 : 55;
-
+  let paused = false; 
   function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
   window.addEventListener('resize', resize);
   resize();
@@ -37,6 +37,7 @@
   for(let i=0;i<COUNT;i++) particles.push(makeParticle());
 
   function draw(){
+    if (paused) return; 
     ctx.clearRect(0,0,w,h);
     for(const p of particles){
       p.y -= p.speed; p.x += p.drift; p.pulse += 0.02;
@@ -55,6 +56,11 @@
     if(!reduced) requestAnimationFrame(draw);
   }
   if(!reduced) draw();
+  window.__pauseParticles = () => { paused = true; };          
+  window.__resumeParticles = () => {                           
+    paused = false;
+    if(!reduced) draw();
+  };
 })();
 
 /* ========================================================================
@@ -236,6 +242,7 @@ function playTeleportTransition(onCovered){
       done = true;
       doSwap(); // safety net — guarantees the swap happens even if timeupdate never fired
       video.classList.add('fade-out');
+      if (window.__resumeParticles) window.__resumeParticles();
       setTimeout(()=>{
         video.classList.add('hidden');
         video.classList.remove('fade-out');
@@ -250,6 +257,7 @@ function playTeleportTransition(onCovered){
     video.volume = 0.35;
     video.addEventListener('timeupdate', onTimeUpdate);
     video.addEventListener('ended', finish);
+    if (window.__pauseParticles) window.__pauseParticles();
     video.play().catch(()=> finish()); // autoplay-with-sound blocked → just skip ahead
     setTimeout(finish, 2200); // safety net in case 'ended' never fires
   });
