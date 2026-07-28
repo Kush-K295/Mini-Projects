@@ -84,7 +84,7 @@ class outgoing(BaseModel):
     faculty: Optional[str] = None
     room: str
 
-BATCH_PATTERN = re.compile(r'^\d{2}[A-Z]\d{2,3}$')
+BATCH_PATTERN = re.compile(r'^\d{2}[A-Z]{1,2}\d{2,3}$')
 @app.get("/getTT/{sem}/{batch}", response_model=list[outgoing])
 def get_time_table(sem: int, batch: str):
     if sem not in semdata:
