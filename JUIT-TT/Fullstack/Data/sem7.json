@@ -16,7 +16,7 @@
       "P-18B1WCI772 CS-IT [PCC, PAI] E4_23A14 (RIV) ALAB1",
       "P-18B1WCI772 CS-IT [PCC, PAI] E4_23C11, 23F11 (MSI) ALAB2",
       "P-25B7WCI772 23I11, 23I12 (SKP) CL1B",
-      "L-18B1WCI738 23A11, 23A12, 23A13 (PKG) CR10"
+      "L-18B1WCI738 23A11, 23A12, 23A13 (AYS) CR10"
     ]
   },
   {
@@ -143,8 +143,7 @@
     "time": 8,
     "data": [
       "L-21B1WMA831 BACK [CS84] (RKB) CABIN",
-      "L-18B11MA313 BACK [23A11] (MDS) CABIN",
-      "L-18B1WCI738 23A17, 23A18, 23A19, 23C11 (PKG) CR06"
+      "L-18B11MA313 BACK [23A11] (MDS) CABIN"
     ]
   },
   {
@@ -205,7 +204,7 @@
     "data": [
       "P-18B1WCI772 CS-IT [PCC, PAI] E4_23A11 (DSA) ALAB1",
       "P-25B7WCI773 23J11, 23J12 (MKA) CL11",
-      "L-18B1WCI738 23A14, 23A15, 23A16 (PKG) CR03"
+      "L-18B1WCI738 23A14, 23A15, 23A16, 23A17, 23A18, 23A19, 23C11 (PKG) LT3"
     ]
   },
   {
@@ -221,8 +220,7 @@
     "time": 8,
     "data": [
       "L-21B1WMA831 BACK [CS84] (RKB) CABIN",
-      "L-18B11MA313 BACK [23A11] (MDS) CABIN",
-      "L-18B1WCI738 23A17, 23A18, 23A19, 23C11 (PKG) CR06"
+      "L-18B11MA313 BACK [23A11] (MDS) CABIN"
     ]
   },
   {
@@ -248,7 +246,7 @@
     "time": 2,
     "data": [
       "L-25B1WCI737 23I11, 23I12 (SKP) CR07",
-      "L-18B1WCI738 23A11, 23A12, 23A13 (PKG) LT3"
+      "L-18B1WCI738 23A11, 23A12, 23A13 (AYS) LT3"
     ]
   },
   {
@@ -304,7 +302,7 @@
     "data": [
       "L-25B1WCI740 CSAIML_PE [23I11, 23I12] (SKS) CR16",
       "L-25B1WCI742 CS [23K11] (RMS) CR17",
-      "L-18B1WCI738 23A14, 23A15, 23A16 (PKG) CR03"
+      "L-18B1WCI738 23A14, 23A15, 23A16, 23A17, 23A18, 23A19, 23C11 (PKG) LT2"
     ]
   },
   {
@@ -347,7 +345,7 @@
     "time": 5,
     "data": [
       "L-18B1WCE732 E5_23D11 (RRA) CR14",
-      "L-18B1WCI738 23A11, 23A12, 23A13 (PKG) CR16"
+      "L-18B1WCI738 23A11, 23A12, 23A13 (AYS) CR16"
     ]
   },
   {
@@ -401,7 +399,7 @@
     "day": 5,
     "time": 3,
     "data": [
-      "L-18B1WCI738 23A14, 23A15, 23A16 (PKG) CR03"
+      "L-18B1WCI738 23A14, 23A15, 23A16, 23A17, 23A18, 23A19, 23C11 (PKG) LT2"
     ]
   },
   {
